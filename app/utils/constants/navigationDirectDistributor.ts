@@ -37,6 +37,20 @@ export const Nav = () => {
             link: '/quotation',
             width: 20,
             height: 20,
+            subMenu: [
+                {
+                    name: 'Submit a quotation',
+                    link: '/quotation/new'
+                },
+                {
+                    name: 'Outstanding quotations',
+                    link: '/quotation'
+                },
+                {
+                    name: 'Completed quotations',
+                    link: '/quotation/completed'
+                }
+            ]
         },
         {
             icon: '/icon/icon-order.svg',

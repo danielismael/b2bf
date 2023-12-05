@@ -14,6 +14,7 @@ const config: Config = {
         grey_three: '#F5F5F5',
         grey_for: '#666666',
         grey_five: '#5B6B79',
+        grey_six: '#EAEAEA',
         yellow_one: '#FBBB21',
         yellow_two: '#FF9900',
         green_one: '#2CA87F',
@@ -30,6 +31,7 @@ const config: Config = {
       spacing: {
         '0px' : '0px !important',
         '1px' : '1px',
+        '7px' : '7px',
         '9px' : '9px',
         '15px' : '15px',
         '60px': '60px',
@@ -73,7 +75,8 @@ const config: Config = {
         'profile': ' 0px 8px 24px 0px rgba(27, 46, 94, 0.12)',
         'card_product' : '0px 1px 0px 0px #F0F0F0 inset',
         'login' : ' 0px 8px 24px 0px rgba(27, 46, 94, 0.12)',
-        'submenu' : ' 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12)'
+        'submenu' : ' 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12)',
+        'shadow_btn_small' : '0px 2px 0px 0px rgba(0, 0, 0, 0.04)',
       },
       fontFamily: {
         inter: ['var(--font-inter)'],

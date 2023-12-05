@@ -5,7 +5,7 @@ export default function NotFound() {
     return (
         <div className="bg-white w-screen h-screen flex flex-col items-center justify-center min-h-1000 px-3 lg:px-0">
             <Image
-                src="logo-enco.svg"
+                src="/logo-enco.svg"
                 alt="Encoparts"
                 width="120"
                 height="50"
@@ -13,7 +13,7 @@ export default function NotFound() {
             />
 
             <Image
-                src="404.svg"
+                src="/404.svg"
                 alt="Not found"
                 width="575"
                 height="468"

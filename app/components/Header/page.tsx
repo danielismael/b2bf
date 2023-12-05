@@ -25,7 +25,7 @@ type NavProps = {
 const Header: React.FC<NavProps> = ({ list}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [pageWidth, setPageWidth] = useState(0);
-    const [subMenuOpen, setSubMenuOpen] = useState<boolean>(false);
+    const [subMenuOpen, setSubMenuOpen] = useState<number>(9999);
 
     //Handles the opening and closing of our nav
     const handleClick = () => {
@@ -36,7 +36,7 @@ const Header: React.FC<NavProps> = ({ list}) => {
         // Verifica se o item clicado possui subitens
         if (list[index].subMenu) {
             // Abre ou fecha o submenu correspondente
-            setSubMenuOpen((prevState) => !prevState);
+            setSubMenuOpen(index);
         }
     };
 
@@ -58,7 +58,7 @@ const Header: React.FC<NavProps> = ({ list}) => {
     }, []); // A dependência vazia garante que o efeito só seja executado uma vez após a montagem inicial
 
     return (
-        <>
+        <header className="z-10 relative">
             { pageWidth <= 992 ? (
                 <nav className="w-auto h-24 bg-white flex items-center justify-between lg:px-45px px-25px border-b-1 border-grey_one">
                     <Link href="/">
@@ -138,11 +138,12 @@ const Header: React.FC<NavProps> = ({ list}) => {
 
                                         {index.name}
 
-                                        <ul className={`w-200px bg-white flex flex-col top-30px shadow-submenu absolute ${subMenuOpen ? '' : 'hidden'}`}>
+                                        <ul className={`w-200px bg-white flex flex-col top-40px shadow-submenu absolute ${subMenuOpen === key ? '' : 'hidden'}`}
+                                            onMouseLeave={() => {setSubMenuOpen(9999)}}>
                                             {index.subMenu.map((subIndex: any, subKey: number) => (
                                                 <li className="w-100% h-100%">
                                                     <Link href={subIndex.link}
-                                                          className="w-100% p-4 flex">{subIndex.name}</Link>
+                                                          className="w-100% p-4 flex hover:bg-grey_six">{subIndex.name}</Link>
                                                 </li>
                                             ))}
                                         </ul>
@@ -166,7 +167,7 @@ const Header: React.FC<NavProps> = ({ list}) => {
                     <Profile/>
                 </nav>
             )}
-        </>
+        </header>
     )
 }
 

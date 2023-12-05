@@ -77,31 +77,31 @@ function DataTable({ columns, data }: DataTableProps): JSX.Element {
 
                 <table {...getTableProps()} className="w-screen table caption-top w-auto">
                     <thead className="px-3 bg-grey_three h-50px border-t-1 border-b-1">
-                        {headerGroups.map((headerGroup) => (
-                            <tr {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map((column) => (
-                                    <td {...column.getHeaderProps()} style={{ width: column.width }} className="font-semibold text-14px font-inter text-black first:pl-25px">
-                                        {column.render('Header')}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <td {...column.getHeaderProps()} style={{ width: column.width }} className="font-semibold text-14px font-inter text-black first:pl-25px">
+                                    {column.render('Header')}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
                     </thead>
                     <tbody {...getTableBodyProps()}>
-                        {page.map((row: any) => {
-                            prepareRow(row);
-                            return (
-                                <tr {...row.getRowProps()} className="bg-white h-50px border-b-1">
-                                    {row.cells.map((cell: any) => {
-                                        return (
-                                            <td {...cell.getCellProps()} style={{ width: cell.width }} className="font-normal text-14px font-inter text-black first:pl-25px">
-                                                {cell.render('Cell')}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            );
-                        })}
+                    {page.map((row: any) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()} className="bg-white h-50px border-b-1">
+                                {row.cells.map((cell: any) => {
+                                    return (
+                                        <td {...cell.getCellProps()} style={{ width: cell.width }} className="font-normal text-14px font-inter text-black first:pl-25px">
+                                            {cell.render('Cell')}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
                     </tbody>
                 </table>
 
