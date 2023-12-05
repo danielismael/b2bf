@@ -3,10 +3,10 @@ import Header from "@/app/components/Header/page";
 import { Nav } from "../utils/constants/navigationDirectDistributor";
 import DataTable from "@/app/components/Datatable/page";
 import Image from "next/image";
-import {router} from "next/client";
 import Breadcrumb from "@/app/components/Breadcrumb/page";
 import Title from "@/app/components/Title/page";
 import LinkSmall from "@/app/components/LinkSmall/page";
+import MainDirectDistributor from "@/app/components/Main/page";
 
 const User = () => {
     // Função para edição
@@ -86,22 +86,23 @@ const User = () => {
     ];
 
     return (
-        <main className="w-screen h-screen bg-white">
-            <Header list={Nav()}/>
+        <>
+        <Header list={Nav()}/>
+            <MainDirectDistributor>
+                <div className="flex items-start">
+                    <div className="w-100% md:w-50% flex flex-col">
+                        <Breadcrumb list={breadcrumb}/>
+                        <Title title={'Users'} />
+                    </div>
 
-            <div className="flex mx-45px my-35px box-border">
-                <div className="w-50% flex flex-col">
-                    <Breadcrumb list={breadcrumb}/>
-                    <Title title={'Users'} />
+                    <div className="w-100% md:w-50% mt-5 md:mt-0 flex items-center justify-end">
+                        <LinkSmall href="/user/new" name="New user" bgColor="bg-yellow_one"/>
+                    </div>
                 </div>
 
-                <div className="w-50% flex items-center justify-end">
-                    <LinkSmall href="/user/new" name="New user" bgColor="bg-yellow_one"/>
-                </div>
-            </div>
-
-            <DataTable columns={columns} data={data} />
-        </main>
+                <DataTable columns={columns} data={data} />
+            </MainDirectDistributor>
+        </>
     )
 }
 
