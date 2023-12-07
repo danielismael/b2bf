@@ -4,55 +4,41 @@ import {Nav} from "@/app/utils/constants/navigationDirectDistributor";
 import Breadcrumb from "@/app/components/Breadcrumb/page";
 import {
     breadcrumb,
-    dataDataTableQuotation,
     TitleConst,
     ButtonsDatatable
-} from "@/app/utils/constants/quotation/new/util";
+} from "@/app/utils/constants/quotation/util";
 import DataTable from "@/app/components/Datatable/page";
 import MainDirectDistributor from "@/app/components/Main/page";
 import Title from "@/app/components/Title/page";
 import Image from "next/image";
-import {getApiDirectDistributor} from "@/app/api/axios";
-import {useEffect, useState} from "react";
 
-type Quotation = {
-    id: number
-    client_name: string
-    client_order: string
-    requested_by: string
-    urgent: string
-    deadline: string
-    type: string
-    status: string
-    created_at: string
+type QuotationItem = {
+    id: number,
+    client_name: string,
+    client_order: string,
+    requested_by: string,
+    urgent: string,
+    deadline: string,
+    type: string,
+    status: string,
+    created_at: string,
+    updated_at: string
 }
 
-type QuotationProps = {
-    quotation: Quotation[]
+type Quotations = {
+    quotations: QuotationItem[]
 }
 
-const getData = async () => {
-    const res = await fetch('http://localhost:8000/api/directDistributor/quotation', { next: { revalidate: 10 } })
-
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-    }
-
-    return res.json()
+async function getQuotations(){
+    const res = await fetch('http://localhost:8000/api/directDistributor/quotation');
+    return res.json();
 }
 
-const NewQuotation = async ({quotation}: QuotationProps) => {
-    const response = await getData();
+const NewQuotation = async () => {
+    const data = await getQuotations();
 
-    const handleView = (id: string) => {
-        // Lógica de edição aqui
-        console.log(`Editando item com ID: ${id}`);
-    };
-
-    const handleDownload = (id: string) => {
-        // Lógica de exclusão aqui
-        console.log(`Excluindo item com ID: ${id}`);
+    const handleView = (id: number) => {
+        alert(id)
     };
 
     const columns = () => [
@@ -101,31 +87,16 @@ const NewQuotation = async ({quotation}: QuotationProps) => {
             accessor: "actions",
             width: "5%",
             Cell: ({ row }: any) => (
-                <div className="flex items-center w-auto text-right">
-                    <button
-                        onClick={() => handleView(row.original.id)}
-                        className="w-25px h-25px flex items-center justify-center"
-                    >
-                        <Image
-                            src="/icon/icon-view.svg"
-                            width="18"
-                            height="18"
-                            alt="icon edit"
-                        />
-                    </button>
-
-                    <button
-                        onClick={() => handleDownload(row.original.id)}
-                        className="w-25px h-25px flex items-center justify-center"
-                    >
-                        <Image
-                            src="/icon/icon-document.svg"
-                            width="18"
-                            height="18"
-                            alt="icon edit"
-                        />
-                    </button>
-                </div>
+                <button
+                    onClick={() => handleView(row.original.id)}
+                    className="w-25px h-25px flex items-center justify-center">
+                    <Image
+                        src="/icon/icon-view.svg"
+                        width="18"
+                        height="18"
+                        alt="icon edit"
+                    />
+                </button>
             ),
         },
     ];
@@ -133,11 +104,12 @@ const NewQuotation = async ({quotation}: QuotationProps) => {
     return (
         <>
             <Header list={Nav()} />
-
             <MainDirectDistributor>
                 <Breadcrumb list={breadcrumb()} />
                 <Title title={TitleConst} />
-                <DataTable columns={columns()} data={response} buttons={ButtonsDatatable()}/>
+                <DataTable columns={columns()}
+                           data={data}
+                           buttons={ButtonsDatatable()}/>
             </MainDirectDistributor>
         </>
     )

@@ -5,7 +5,7 @@ import LinkSmall from "@/app/components/LinkSmall/page";
 
 interface DataTableProps {
     columns: any[];
-    data: any[];
+    data?: any;
     buttons?: any[];
 }
 
@@ -87,7 +87,7 @@ function DataTable({ columns, data, buttons }: DataTableProps): JSX.Element {
                     <table {...getTableProps()} className="table caption-top w-screen xl:w-100%">
                     <thead className="px-3 bg-grey_three h-50px border-t-1 border-b-1">
                     {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
+                        <tr {...headerGroup.getHeaderGroupProps()} className="h-50px">
                             {headerGroup.headers.map((column) => (
                                 <td {...column.getHeaderProps()} style={{ width: column.width }} className="will-change-auto font-bold text-12px font-inter text-black first:pl-25px whitespace-nowrap px-25px xl:px-0">
                                     {column.render('Header')}
@@ -122,7 +122,7 @@ function DataTable({ columns, data, buttons }: DataTableProps): JSX.Element {
                 <div className="flex items-center justify-between p-25px">
                     <div className="text-grey_for text-14px font-inter font-normal">
                         Página{' '}
-                        {pageIndex + 1} de {Math.ceil(data.length / pageSize)}{' '}
+                        {pageIndex + 1} de {Math.ceil(pageSize / data.length)}{' '}
                     </div>
 
                     <div className="flex items-center justify-center">

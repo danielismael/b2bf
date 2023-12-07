@@ -24,7 +24,7 @@ type NavProps = {
 
 const Header: React.FC<NavProps> = ({ list}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [pageWidth, setPageWidth] = useState(0);
+    const [pageWidth, setPageWidth] = useState(1000);
     const [subMenuOpen, setSubMenuOpen] = useState<number>(9999);
 
     //Handles the opening and closing of our nav
